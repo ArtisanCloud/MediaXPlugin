@@ -1,0 +1,5 @@
+name: MediaXPlugin
+version: 1.0.0
+type: open
+path: ./MediaXPlugin
+config: {}
