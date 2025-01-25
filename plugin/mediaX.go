@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/ArtisanCloud/MediaX/pkg/plugin/core"
+	"github.com/ArtisanCloud/MediaXCore/pkg/plugin/core/contract"
 )
 
 type MediaXPlugin struct {
 	PluginName string
+}
+
+func NewMediaXPlugin() MediaXPlugin {
+	return MediaXPlugin{
+		PluginName: "MediaXPlugin",
+	}
 }
 
 func (p *MediaXPlugin) Initialize(config map[string]interface{}) error {
@@ -19,16 +24,13 @@ func (p *MediaXPlugin) Name() string {
 	return p.PluginName
 }
 
-func (p *MediaXPlugin) Publish(core.PublishRequest, ...interface{}) (core.PublishResult, error) {
+func (p *MediaXPlugin) Publish(*contract.PublishRequest, ...interface{}) (*contract.PublishResult, error) {
 
 	fmt.Println("Publishing MediaX Plugin")
-	return core.PublishResult{
+	return &contract.PublishResult{
 		Status:  "success",
 		Message: "MediaX Plugin Published Successfully",
 	}, nil
 }
 
-// 导出插件实例
-var Provider core.Provider = &MediaXPlugin{
-	PluginName: "MediaXPlugin",
-}
+var PluginMediaX MediaXPlugin = NewMediaXPlugin()

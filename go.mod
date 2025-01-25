@@ -1,7 +1,7 @@
 module github.com/ArtisanCloud/MediaXPlugin
 
-go 1.23.1
+go 1.18
 
-replace github.com/ArtisanCloud/MediaX => ../MediaX
+replace github.com/ArtisanCloud/MediaXCore => ../MediaXCore
 
-require github.com/ArtisanCloud/MediaX v0.0.0-20250114162711-55c0d22bb613
+require github.com/ArtisanCloud/MediaXCore v0.0.0-20250125034521-fbbed5db17e7

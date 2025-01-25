@@ -2,20 +2,22 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/ArtisanCloud/MediaX/pkg/plugin/core"
+	plugin2 "github.com/ArtisanCloud/MediaXCore/pkg/plugin"
+	"github.com/ArtisanCloud/MediaXCore/pkg/plugin/core/contract"
+	"plugin"
 )
 
 func main() {
-	// 创建 MediaXPlugin 实例
-	plugin := &MediaXPlugin{
-		PluginName: "MediaXPlugin",
+	// 加载插件
+	p, err := plugin.Open("./plugin/plugin.so")
+	if err != nil {
+		panic(err)
 	}
 
-	// 输出插件信息
-	fmt.Printf("Plugin name: %s\n", plugin.Name())
-	plugin.Publish(core.PublishRequest{
-		Title:   "example",
-		Content: "Hello, MediaX!",
-	})
+	mediaXPlugin, err := plugin2.LookUpSymbol[contract.ProviderInterface](p, "PluginMediaX")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("plugin loaded name :%s", (*mediaXPlugin).Name())
+
 }
