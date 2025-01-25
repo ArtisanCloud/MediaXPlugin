@@ -1,0 +1,5 @@
+name: PluginMediaX
+version: 1.0.0
+type: open
+path: ./plugin/plugin.so
+config:
