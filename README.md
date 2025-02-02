@@ -58,7 +58,38 @@ plugins:
     config: {}
 ```
 
-### 3. 修改 `Makefile`
+
+
+## 3. 生成一个插件 MediaXPluginWechatOfficialAccount
+```shell
+cp src/pluginA.go src/officialAccount.go
+
+```
+
+修改officialAccount.go
+
+* 全文件替换MediaXPlugin -> MediaXPluginWechatOfficialAccount
+
+* 修改PluginName
+```go
+
+func NewMediaXPluginWechatOfficialAccount() MediaXPluginWechatOfficialAccount {
+	return MediaXPluginWechatOfficialAccount{
+		// PluginName: "PluginMediaX"
+		PluginName: string(contract.WechatOfficialAccount),
+	}
+}
+
+```
+* 修改暴露插件的变量对象
+```go
+// var PluginMediaXA MediaXPluginRedBook = NewMediaXPluginRedBook()
+var WechatOfficialAccount MediaXPluginWechatOfficialAccount = NewMediaXPluginWechatOfficialAccount()
+
+```
+
+
+### 4. 修改 `Makefile`
 
 帮助编译插件组件，使用makefile工具
 
